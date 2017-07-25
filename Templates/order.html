@@ -1,0 +1,75 @@
+{% load staticfiles %}
+{% include 'header.html' %}
+	<div class="order-section-page">
+		<div class="ordering-form">
+			<div class="container">
+			<div class="order-form-head text-center wow bounceInLeft" data-wow-delay="0.4s">
+						<h3>Restaurant Order Form</h3>
+						<p>Ordering Food Was Never So Simple !!!!!!</p>
+					</div>
+				<div class="col-md-6 order-form-grids">
+					
+					<div class="order-form-grid  wow fadeInLeft" data-wow-delay="0.4s">
+						<h5>Order Information</h5>
+						<span>Items List:</span>
+						<div>
+						<table class="table table-hover table-bordered">
+							<thead>
+							<th>
+								Name
+							</th>
+							<th>
+								Quantity
+							</th>
+							<th>
+								Price
+							</th>
+							</thead>
+						{% for x in items %}
+							<tr><td>{{x.0}}</td><td>{{x.1}}</td><td>{{x.2}}</td></tr>
+						{% endfor %}
+						</table>
+						</div>
+						<span><b>Total price: </b></span><span>{{totalprice}}</span>
+						<br/><br/>
+						<form action="" method="POST">{% csrf_token %}
+							<span>Address:</span>
+							<div><input type="text" name="address" style="width:100%;" required/></div>
+							<input type="hidden" name="oid" value="{{oid}}">
+							<br/>
+							<input type="submit" class="btn btn-success" value="Order" name="submit">
+						</form>
+					</div>
+				</div>
+				<div class="col-md-6 ordering-image wow bounceIn" data-wow-delay="0.4s">
+					<img src="/static/images/order.jpg" class="img-responsive" alt="" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- footer-section-starts -->
+	<div class="footer">
+		<div class="container">
+			<p class="wow fadeInLeft" data-wow-delay="0.4s">&copy; 2014  All rights  Reserved | Template by &nbsp;<a href="http://w3layouts.com" target="target_blank">W3Layouts</a></p>
+		</div>
+	</div>
+	<!-- footer-section-ends -->
+	  <script type="text/javascript">
+						$(document).ready(function() {
+							/*
+							var defaults = {
+					  			containerID: 'toTop', // fading element id
+								containerHoverID: 'toTopHover', // fading element hover id
+								scrollSpeed: 1200,
+								easingType: 'linear' 
+					 		};
+							*/
+							
+							$().UItoTop({ easingType: 'easeOutQuart' });
+							
+						});
+					</script>
+				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+
+</body>
+</html>

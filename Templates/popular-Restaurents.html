@@ -1,0 +1,49 @@
+
+{% load staticfiles %}
+{% include 'header.html' %}
+<div class="form-list" data-wow-delay="0.5s">
+	<form>
+		<ul style="text-align: center;">
+			<li>
+		 	<input type="text" class="text" name="category" placeholder="Category"/>
+			</li>
+			<li>
+		 	<input type="submit" class="text" value="Search" />
+			</li>
+	  	</ul>
+	</form>
+</div>
+{% if placed %}
+<div class="alert alert-success" style="margin:0px;">Placed Successfully..</div>
+{% endif %}
+{% for rest in rests %}
+	<div class="Popular-Restaurants-content" style="padding-bottom: 0;">
+		<div class="Popular-Restaurants-grids">
+			<div class="container">
+				<div class="Popular-Restaurants-grid wow fadeInRight" data-wow-delay="0.4s">
+					<div class="col-md-2 restaurent-logo">
+						<img src="/static/images/restaurent-logo1.jpg" width="50" class="img-responsive" alt="" />
+					</div>
+					<div class="col-md-4 restaurent-title">
+						<div class="logo-title" style="border: 0;">
+							<h4><a href="{{rest.id}}">{{rest.name}}</a></h4>
+						</div>
+					</div>
+					<div class="col-md-2">
+						{% if rest.status == "Closed" %}
+						<span style="color: red;font-size: medium;">Closed</span>
+						{% endif %}
+						{% if rest.status == "Open" %}
+						<span style="color: green;font-size: medium;">Open</span>
+						{% endif %}
+					</div>
+					<div class="col-md-4 buy">
+						<a class="morebtn hvr-rectangle-in" href="{{rest.id}}">Enter</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endfor %}
+{% include 'footer.html' %}

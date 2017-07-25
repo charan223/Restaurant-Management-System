@@ -1,0 +1,88 @@
+{% load staticfiles %}
+{% include 'header.html' %}
+<h3 style="margin-top:20px;margin-left: 100px;margin-bottom: 20px;">Profile Details:</h3>
+{% if login == 1 %}
+<div class="container">
+  <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>Attribute</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Name</td>
+        <td>{{name}}</td>
+      </tr>
+      <tr>
+        <td>Username</td>
+        <td>{{username}}</td>
+      </tr>
+      <tr>
+        <td>Contact</td>
+        <td>{{contact}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endif %}
+{% if login == 2 %}
+<div class="container">
+  <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>Attribute</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Name</td>
+        <td>{{name}}</td>
+      </tr>
+      <tr>
+        <td>ID</td>
+        <td>{{id}}</td>
+      </tr>
+      <tr>
+        <td>Info</td>
+        <td>{{info|safe}}</td>
+      </tr>
+        <tr>
+        <td>Location</td>
+        <td>{{location}}</td>
+      </tr>
+      <tr>
+        <td>Status</td>
+        <td>
+          <form action="" method="POST">{%csrf_token%}
+          <select name="status">
+          {% if open %}
+          <option value="1" selected>Open</option>
+          <option value="2">Closed</option>
+          {% else %}
+          <option value="1">Open</option>
+          <option value="2" selected>Closed</option>
+          {% endif %}
+        </select>
+            <input type="submit" value="Set" name="submit"/>
+            </form>
+        </td>
+      </tr>
+      <tr>
+        <td>Approved</td>
+        {% if approval %}
+        <td>Yes</td>
+        {% else %}
+        <td>No</td>
+        {% endif %}
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endif %}
+<br/>
+<br/>
+
+{% include 'footer.html' %}
